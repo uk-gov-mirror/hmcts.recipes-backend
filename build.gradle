@@ -77,12 +77,11 @@ dependencyCheck {
 
 def springBootVersion = springBoot.class.package.implementationVersion
 def springfoxSwagger = '3.0.0'
-def javaLoggingVersion = '5.1.9'
 
 repositories {
   mavenLocal()
   mavenCentral()
-  maven { url 'https://jitpack.io' }
+  maven { url = 'https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1' }
 }
 
 dependencyUpdates.resolutionStrategy = {
@@ -112,7 +111,7 @@ dependencies {
 
   implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.8.6'
 
-  implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.1.9'
+  implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '8.0.0'
   implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.12'
   implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.12'
 
