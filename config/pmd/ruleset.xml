@@ -8,10 +8,10 @@
 
   <rule ref="category/java/bestpractices.xml">
     <exclude name="GuardLogStatement" />
-    <exclude name="JUnitTestContainsTooManyAsserts" />
+    <exclude name="UnitTestContainsTooManyAsserts" />
 
     <!-- Some tests don't use assertions explicitly, but through RestAssured, for example -->
-    <exclude name="JUnitTestsShouldIncludeAssert" />
+    <exclude name="UnitTestShouldIncludeAssert" />
   </rule>
   <rule ref="category/java/codestyle.xml">
     <exclude name="AtLeastOneConstructor" />
@@ -20,7 +20,6 @@
     <exclude name="MethodArgumentCouldBeFinal" />
     <exclude name="OnlyOneReturn" />
     <exclude name="TooManyStaticImports" />
-    <exclude name="DefaultPackage"/>
     <exclude name="CommentDefaultAccessModifier"/>
   </rule>
   <rule ref="category/java/codestyle.xml/ClassNamingConventions">
@@ -52,7 +51,7 @@
   </rule>
   <rule ref="category/java/design.xml/LawOfDemeter">
     <properties>
-      <property name="violationSuppressRegex" value="(.*method chain calls.*|.*object not created locally.*)" />
+      <property name="violationSuppressRegex" value="(.*method chain calls.*|.*object not created locally.*|.*foreign value.*)" />
     </properties>
   </rule>
   <rule ref="category/java/design.xml/SignatureDeclareThrowsException">

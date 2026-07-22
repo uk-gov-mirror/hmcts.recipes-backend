@@ -25,7 +25,6 @@ class RecipesTest {
     }
 
     @Test
-    @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
     void recipes_list_returns_200() {
         get("/recipes").then().statusCode(200);
     }
