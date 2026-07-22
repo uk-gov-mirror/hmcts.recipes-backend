@@ -2,7 +2,7 @@ java:
   applicationPort: 4550
   readinessPath: '/health/readiness'
   # Don't modify below here
-  image: 'hmctspublic.azurecr.io/recipes/backend:latest'
+  image: 'hmctsprod.azurecr.io/recipes/backend:latest'
   environment:
     POSTGRES_SSL_MODE: require
   autoscaling:
