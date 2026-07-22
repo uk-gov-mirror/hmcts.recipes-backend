@@ -27,6 +27,7 @@ version = '0.0.1'
 
 pmd {
   toolVersion = "7.17.0"
+  consoleOutput = true
   reportsDir = layout.buildDirectory.dir("reports/pmd").get().asFile
   ruleSetFiles = files("config/pmd/ruleset.xml")
 }
