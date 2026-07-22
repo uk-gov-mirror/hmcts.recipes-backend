@@ -21,7 +21,7 @@ import java.util.List;
 )
 public class RecipeController {
 
-    private final RecipeStore recipeStore; // NOPMD no need for accessors here
+    private final RecipeStore recipeStore;
 
     public RecipeController(RecipeStore recipeStore) {
         this.recipeStore = recipeStore;

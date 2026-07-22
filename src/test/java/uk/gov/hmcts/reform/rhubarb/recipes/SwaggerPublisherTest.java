@@ -23,7 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class SwaggerPublisherTest {
 
     @Autowired
-    @SuppressWarnings("PMD.BeanMembersShouldSerialize")
     private MockMvc mvc;
 
     @DisplayName("Generate OpenAPI documentation")

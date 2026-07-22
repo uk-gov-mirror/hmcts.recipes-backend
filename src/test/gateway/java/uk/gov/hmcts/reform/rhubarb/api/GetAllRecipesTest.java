@@ -11,7 +11,9 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 import java.util.Base64;
 import java.util.Optional;
@@ -105,11 +107,10 @@ class GetAllRecipesTest {
         assertThat(response.body().asString()).contains("Resource not found");
     }
 
-    @SuppressWarnings("PMD.DataflowAnomalyAnalysis")
     private Response callAllRecipesEndpoint(
         Optional<KeyStoreWithPassword> clientKeyStore,
         Optional<String> subscriptionKey
-    ) throws Exception {
+    ) throws GeneralSecurityException {
         RequestSpecification request = RestAssured.given().baseUri(getApiGatewayUrl());
 
         if (clientKeyStore.isPresent()) {
@@ -131,7 +132,7 @@ class GetAllRecipesTest {
     private RestAssuredConfig getSslConfigForClientCertificate(
         KeyStore clientKeyStore,
         String clientKeyStorePassword
-    ) throws Exception {
+    ) throws GeneralSecurityException {
         SSLConfig sslConfig = sslConfig()
             .allowAllHostnames()
             .sslSocketFactory(new SSLSocketFactory(clientKeyStore, clientKeyStorePassword));
@@ -139,7 +140,7 @@ class GetAllRecipesTest {
         return RestAssured.config().sslConfig(sslConfig);
     }
 
-    private KeyStoreWithPassword getValidClientKeyStore() throws Exception {
+    private KeyStoreWithPassword getValidClientKeyStore() throws GeneralSecurityException, IOException {
         byte[] clientKeyStore = Base64.getDecoder().decode(
             CONFIG.getString("client.key-store.content")
         );
@@ -152,7 +153,7 @@ class GetAllRecipesTest {
         return new KeyStoreWithPassword(keyStore, clientKeyStorePassword);
     }
 
-    private KeyStoreWithPassword getUnrecognisedClientKeyStore() throws Exception {
+    private KeyStoreWithPassword getUnrecognisedClientKeyStore() throws GeneralSecurityException, IOException {
         KeyStore keyStore = KeyStore.getInstance("PKCS12");
 
         try (
